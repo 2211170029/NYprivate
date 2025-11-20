@@ -1,0 +1,16 @@
+# LaTeX が生成する一時ファイル
+*.aux
+*.log
+*.dvi
+*.toc
+*.lof
+*.lot
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+# コンパイル結果のフォルダ
+out/
+# 最終成果物 (PDF)
+*.pdf
+# 先生のテンプレートの不要なファイル
+kari.eps

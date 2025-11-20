@@ -1,0 +1,159 @@
+%\Documentclass[12pt]{jreport}
+\documentclass[uplatex, 12pt]{ujbook}
+%%
+%%  卒業論文 スタイルファイル 2020年度版
+%%                       T. MATSUZAKI
+%%  $Lastupdate: Fri Nov  6 11:37:15 2020 $
+%%
+%\begin{figure}[htpb]
+% \begin{center}
+%  \includegraphics[width=8cm,height=4cm,clip,keepaspectratio]{syouroku.eps}
+% \end{center}
+% \caption{図3.1}
+% \label{fig:FIG1}
+%\end{figure}
+
+\usepackage{jgraduate20}     % jgraduate20.styを読み込む
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{makeidx}          % 索引作成用
+% 前設定
+\usepackage[
+    dvipdfmx,			% PDFを作る方法（ドライバ）を指定
+    bookmarks=true,		% PDFにしおり（目次）を自動作成
+    bookmarksnumbered=true,	% しおりに章番号 (1.1など) を付ける
+    colorlinks=true,		% リンクを色付きテキストにする (枠線を消す)
+    linkcolor=black,		% 目次や本文中 (\ref) のリンクを黒色に
+    citecolor=black,		% 参考文献 (\cite) へのリンクを黒色に
+    urlcolor=black		% URL (https://...) のリンクを黒色に
+]{hyperref}
+\usepackage{pxjahyper}	%文字化け防止
+
+\doubleside{1}                % 1:両面印刷/0:片面印刷
+
+\title{13.56MHz高周波電源の出力最大化に向けた自動整合器の製作}
+\authorid{2211170029}
+\author{永野　優翔}
+\university{近畿大学}                 % 大学名 (近畿大学, etc.)
+\department{産業理工学部}             % 学部名 (産業理工学部, etc.)
+\major{電気電子工学科}                % 学科名 (電気電子工学科, etc.)
+%\date{\today}
+\date{令和7年 1月15日}
+\year{令和七年度}
+\teacherpos{教授}
+\teacher{喜屋武　毅}
+\coauthornum{2}                       % 共同研究者の人数 (2人まで対応)
+\cfauthid{2211170053}                % 共同研究者1の学籍番号
+\cfauth{貴船 芳尚}                    % 共同研究者1の名前
+\csauthid{2211170054}                % 共同研究者2の学籍番号
+\csauth{中尾 楓}                    % 共同研究者2の名前          
+
+\begin{document}
+\maketitle                    % 表紙
+\cleardoublepageskip          % 両面印刷の場合表紙の裏は白紙にします
+\tableofcontents              % 目次 (↓ *のついている項目)
+\listoffigures                % 図目次
+\listoftables                 % 表目次
+\cleardoublepageskip          % 目次と本文を分離・両面印刷の場合表紙の裏は白紙にします
+\pagenumbering{arabic}        % ページ番号をアラビア数字に
+\newpage
+
+%===============================================================
+\chapter{序章}
+
+\section{本研究の背景}
+ 近年,AIやIoT技術の発展に伴い,半導体の需要が増加している.製造プロセスにおいて
+ 回路の微細化を実現する技術として, 高周波プラズマが 用いられている.プラズマを生成するうえで,
+ プラズマ側でインピーダンスが一致しない場合,電源側に反射電力が発生し伝送効率の低下や故障の
+ 原因につながる.そのため,自動整合器を電源とプラズマ負荷との間に入れ,整合をとる必要がある.
+  しかし,プラズマ負荷のインピーダンスは点火の瞬間,ガスの種類,圧力,投入電力,電極間の距離など
+  実験条件の変更により常に変動する.
+ そのため,電源側と負荷との整合を常にとる必要があり,電源を最大限に活用するための
+ 整合器が必要不可欠となっている.
+
+
+\section{本研究の目的}
+ 13.56MHz高周波電源の出力最大化
+
+\section{本論文の構成}
+ 本論文では、第１章｢序論｣,第２章｢自動整合器の概要｣,第３章「自動整合器の設計｣,
+ 第４章｢自動整合器の動作と評価｣,第５章｢結論｣の５章から構成されている.
+ 第２章では,自動整合器の４つの部門の役割について述べる.第３章では各部門の設計に述べ,
+ 第４章で各部門の計測をおこない,その結果の評価について述べる.第５章で各章の総括を述べる.
+%====================================================================
+\chapter{自動整合器の概要}
+
+\section{自動整合器の構成}
+ 自動整合器は大きく４つの部門で構成されている.図2.1に自動整合器の構成図を示す.
+ 自動整合器では電源から電力が送られ,反射波検出部を通って負荷側へと行く.整合が取れていない場合,
+ 負荷側からの反射波を反射波検出部によって検出する.検出された反射波の信号を処理・制御部で受信,
+ 処理を行う.その後処理された信号は駆動部に送られ,処理・制御部で処理された信号によって駆動部の
+ モータを動かし整合回路部のコンデンサとコイルを用いて整合をおこなう.
+ \begin{figure}[!b]
+ \begin{center}
+  \includegraphics[width=18cm,height=10cm,clip,keepaspectratio]{2.1.png}
+ \end{center}
+ \caption{自動整合器の構成図}
+ \label{fig:2.1}
+\end{figure}
+
+ 
+
+
+\section{自動整合器の動作}
+\section{反射波検出部}
+ \subsection{方向性結合器の原理}
+ \subsection{方向性結合器の動作}
+\section{整合回路部}
+ \subsection{整合回路部の概要}
+ \subsection{整合回路部の動作}
+\section{駆動部}
+ \subsection{駆動部の概要}
+ \subsection{駆動部の動作}
+\section{処理・制御部}
+ \subsection{処理・制御部の概要}
+ \subsection{処理・制御部の動作}
+
+%=============================================================================
+\chapter{自動整合器の設計}
+
+\section{自動整合器の仕様}
+ いかに示すのは設計した自動整合器の仕様である.
+
+
+\section{反射波検出部}
+ \subsection{タンデム型方向性結合器の概要}
+ \subsection{LTspiceによるシミュレーション}
+ \subsection{素子の選定}
+\section{整合回路部}
+ \subsection{マッチング回路の選定}
+ \subsection{整合範囲}
+ \subsection{コンデンサ・コイルの選定}
+\section{駆動部}
+ \subsection{モータの種類}
+ \subsection{モータの選定}
+ \subsection{モータドライバーの選定}
+ \subsection{モータ周りの諸部品}
+\section{処理・制御部}
+ \subsection{アルゴリズムの選定}
+ \subsection{制御部のプログラム}
+%=============================================================================
+\chapter{自動整合器の動作と評価}
+\section{自動整合器全体の概要}
+\section{使用機器}
+\section{方向性結合器}
+\section{整合回路部}
+\section{駆動部}
+\section{処理・制御部}
+%=============================================================================
+\chapter{総括}
+\section{謝辞}
+\section{参考文献}
+
+
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: yatex
+%%% TeX-master: t
+%%% End:
