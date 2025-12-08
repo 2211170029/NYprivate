@@ -16,6 +16,7 @@
 \usepackage{jgraduate20}     % jgraduate20.styを読み込む
 \usepackage[dvipdfmx]{graphicx}
 \usepackage{makeidx}          % 索引作成用
+%\usepackage{url}             %いらないかも
 % 前設定
 \usepackage[
     dvipdfmx,			% PDFを作る方法（ドライバ）を指定
@@ -236,9 +237,11 @@ $K_v$と$K_i$はそれぞれの検出部の結合係数である.\\\\
 \chapter{自動整合器の設計}
 
 \section{自動整合器の仕様}
- いかに示すのは設計した自動整合器の仕様である.
-
-
+ いかに示すのは設計した自動整合器の仕様である.\\\\
+・  動作周波数         13.56[MHz]\\
+・  最大入力電圧       122[V]\\ 
+・  目標インピーダンス　50[Ω]\\
+・  整合可能範囲       R=50～300[Ω], X=－100～150[Ω] (Z≒50～330[Ω])
 \section{反射波検出部}
  \subsection{設計した方向性結合器の概要}
  \subsection{設計した検波回路}
@@ -266,7 +269,7 @@ $K_v$と$K_i$はそれぞれの検出部の結合係数である.\\\\
  \subsection{モータドライバの選定}
  3.4.1で選定したバイポーラステッピングモータを駆動させる素子としてモータドライバ（TB67S249FTG）を採用した.
 
-処理・制御部のArduinoとモータは直接駆動させることができないため,間にモータドライバを設けてモータ駆動を実現した.\\
+処理・制御部のマイコンとモータは直接駆動させることができないため,間にモータドライバを設けてモータ駆動を実現した.\\
 \begin{figure}[h!]
  \begin{center}
   \includegraphics[width=10cm,height=6cm,clip,keepaspectratio]{3.4.png}
@@ -298,9 +301,61 @@ $K_v$と$K_i$はそれぞれの検出部の結合係数である.\\\\
 \section{処理・制御部}
 %=============================================================================
 \chapter{総括}
-\section{謝辞}
-\section{参考文献}
+\acknowledgment
+本研究を遂行するにあたり,ご多忙の中,終始適切な助言を下さり,有意義な研究ができる環境を作ってくださった
+喜屋武先生に感謝申し上げます.また,共同研究者である中尾君,貴船君の協力のおかげで私の至らない部分を
+補いあいながら研究をやり遂げることができました.ありがとうございました.最後に,学生生活を支えてくれた両親
+にもこの場を借りて感謝申し上げます.
+\begin{thebibliography}{9}
+       \bibitem{tandemmatch} John Grebenkemper,
+       ``The tandem Match - An Accurate Directional Wattmeter,''
+       QST, Vol.71, No.1, pp.18-26（1987）.
 
+       \bibitem{w2aew_video} w2aew,
+       ``\#196: How a Directional Coupler in an SWR meter works,''
+       YouTube, \url{https://www.youtube.com/watch?v=byF1FLdbUiA} （2015）.
+
+       \bibitem{inaba} 稲葉 保,
+       ``パワーMOSFETの高速スイッチング応用,''
+       CQ出版社,（2011）.
+
+       \bibitem{RF_power_source} 岩崎 智幸, 岩橋 拓美, 大河原 礼也, 
+       ``ソフトスイッチングLC共振回路を用いた$150\, \mathrm{W}$級$13.56\, \mathrm{MHz}$高周波電源の製作,''
+       近畿大学産業理工学部電気電子工学科,（2023）.
+
+       \bibitem{match_coupler} エンジャー,
+       ``方向性結合器の原理,''
+       \url{https://engineer-climb.com/directional-coupler/}
+
+       \bibitem{ozawa} 小澤 拓治,
+       ``RF ワールド No.10 はじめてのネットワーク・アナライザ,''
+       CQ出版社,（2010）.
+
+       \bibitem{togawa_j} 戸川 治郎,
+       ``スイッチング電源のコイル/トランス設計,''
+       CQ出版社,（2012）.
+
+       \bibitem{togawa_t} 外川 貴規,
+       ``KiCADではじめる「プリント基板」製作,''
+       工学社,（2018）.
+
+       \bibitem{wakai} 若井 一顕,
+       ``回路設計者のためのインピーダンス整合入門,''
+       日刊工業新聞社,（2015）.
+
+       \bibitem{photo_sensor} KI1233 データシート, 新光電子, 
+       \url{https://akizukidenshi.com/goodsaffix/C_KI1233_KI1234_KI1235_KI1236_E.pdf}
+
+       \bibitem{power_supply} RID-65 データシート, MEAN WELL, 
+       \url{http://www.meanwelljapan.com/webapp/product/search.aspx?prod=RID-65}
+
+       \bibitem{motor} ST-42BYH1004 データシート, Mercury Motor, 
+       \url{https://akizukidenshi.com/goodsaffix/ST-42BYH1004-5013.pdf}
+
+       \bibitem{moter_driver} TB67S249FTG データシート, 東芝デバイス\&ストレージ, 
+       \url{https://www.pololu.com/product/3096}
+
+\end{thebibliography}
 
 
 \end{document}
