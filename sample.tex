@@ -288,7 +288,46 @@ $K_v$と$K_i$はそれぞれの検出部の結合係数である.\\\\
  \label{fig:3.1}
 \end{figure}
  \subsection{設計した検波回路}
- %-----------------------------------------------------------------------------------
+ 本研究では,方向性結合器からの信号を「Arduino R4」の最大定格電圧(5V)以下に下げる必要があり検波回路を製作した.今回製作した
+ 検波回路は「検波回路」,「LPF」,「分圧回路」から構成されている.
+
+ 検波回路は13.56MHzの高周波でも対応可能な「BAT54」のショットキーダイオードで設計を行った.実際の検波回路には「BAT54」と
+ 同等の特性を持つ「BAT43」を使用した.
+
+ LPFは13.56MHzでの高周波ひずみを低減を目的とするために設けた.検波回路に影響が少なく,研究室にある値で設計を行った.
+
+ 分圧回路は5(V)以下に電圧を下げる目的とするために設けた.分圧比は,直列抵抗$R_{d1}$,接地抵抗$R_{d2}$とすると,
+ 
+ \begin{equation}
+ Ratio = \frac{R_{d2}}{R_{d1} + R_{d2}}
+  \label{eq:3.4}
+\end{equation}\\
+
+となり,安全マージンを考慮してシミュレーションを行った結果,以下の値で設計した.
+
+\begin{equation}
+ R_{d1} = 22\,\mathrm{k} + 10\,\mathrm{k} + 5.6\,\mathrm{k} = 37.6\,\mathrm{k}\Omega
+  \label{eq:3.5}
+\end{equation}
+
+\begin{equation}
+ R_{d2} = 47\,\mathrm{k}\Omega
+  \label{eq:3.6}
+\end{equation}
+
+\begin{equation}
+ \mathrm{Ratio} = \frac{47}{37.6 + 47} \approx 0.556 = 56\,\%
+  \label{eq:3.7}
+\end{equation}\\
+
+\begin{figure}[h!]
+ \begin{center}
+  \includegraphics[width=15cm,height=10cm,clip,keepaspectratio]{3.2.png}
+ \end{center}
+ \caption{製作した検波回路の全体図}
+ \label{fig:3.2}
+\end{figure}
+ %----------------------------------------------------------------------------
 \section{整合回路部}
  \subsection{整合範囲}
  整合回路の設計に伴い,整合範囲を設定する必要がある.本研究では,特に半導体プロセスなどで広く用いられる
@@ -302,10 +341,10 @@ $K_v$と$K_i$はそれぞれの検出部の結合係数である.\\\\
 
  \begin{figure}[h!]
  \begin{center}
-  \includegraphics[width=10cm,height=10cm,clip,keepaspectratio]{3.2.png}
+  \includegraphics[width=10cm,height=10cm,clip,keepaspectratio]{3.3.png}
  \end{center}
  \caption{スミスチャートで示した整合範囲}
- \label{fig:3.2}
+ \label{fig:3.3}
 \end{figure}
  \subsection{コイルとコンデンサの選定}
  3.3.1で示した整合範囲を可能にするためコイルとコンデンサをπ型整合回路で製作を行った.π型整合回路では
@@ -320,16 +359,16 @@ $K_v$と$K_i$はそれぞれの検出部の結合係数である.\\\\
   
  \begin{minipage}[b]{0.45\textwidth}
   \centering
-  \includegraphics[width=\textwidth]{3.3.png}
+  \includegraphics[width=\textwidth]{3.4.png}
   \subcaption{コンデンサ1}
-  \label{fig:3.3}
+  \label{fig:3.4}
  \end{minipage}
  \hfill
  \begin{minipage}[b]{0.45\textwidth}
   \centering
-  \includegraphics[width=\textwidth]{3.4.png}
+  \includegraphics[width=\textwidth]{3.5.png}
   \subcaption{コンデンサ2}
-  \label{fig:3.4}
+  \label{fig:3.5}
  \end{minipage}
   
  \caption{可変コンデンサ}
@@ -338,10 +377,10 @@ $K_v$と$K_i$はそれぞれの検出部の結合係数である.\\\\
 
 \begin{figure}[h!]
  \begin{center}
-  \includegraphics[width=10cm,height=8cm,clip,keepaspectratio]{3.5.png}
+  \includegraphics[width=10cm,height=8cm,clip,keepaspectratio]{3.6.png}
  \end{center}
  \caption{コイル}
- \label{fig:3.5}
+ \label{fig:3.6}
 \end{figure}
  %-----------------------------------------------------------------------------------
 \section{駆動部}
@@ -354,10 +393,10 @@ $K_v$と$K_i$はそれぞれの検出部の結合係数である.\\\\
  満たしていることから,今回は（ST-41BYH1004）を採用した.\\
  \begin{figure}[h!]
  \begin{center}
-  \includegraphics[width=10cm,height=6cm,clip,keepaspectratio]{3.6.png}
+  \includegraphics[width=10cm,height=6cm,clip,keepaspectratio]{3.7.png}
  \end{center}
  \caption{バイポーラステッピングモータ（ST-42BYH1004）}
- \label{fig:3.6}
+ \label{fig:3.7}
 \end{figure}
 
 \subsection{モータドライバの選定}
@@ -366,10 +405,10 @@ $K_v$と$K_i$はそれぞれの検出部の結合係数である.\\\\
 処理・制御部のマイコンとモータは直接駆動させることができないため,間にモータドライバを設けてモータ駆動を実現した.\\
 \begin{figure}[!h]
  \begin{center}
-  \includegraphics[width=6cm,height=6cm,clip,keepaspectratio]{3.7.png}
+  \includegraphics[width=6cm,height=6cm,clip,keepaspectratio]{3.8.png}
  \end{center}
  \caption{モータドライバ}
- \label{fig:3.7}
+ \label{fig:3.8}
 \end{figure}
 
 \newpage
@@ -384,10 +423,10 @@ $K_v$と$K_i$はそれぞれの検出部の結合係数である.\\\\
  振動がある場合でも互いの軸が同じ高さのままで固定されるようにした.\\\\\\
  \begin{figure}[!h]
  \begin{center}
-  \includegraphics[width=8cm,height=6cm,clip,keepaspectratio]{3.8.png}
+  \includegraphics[width=8cm,height=6cm,clip,keepaspectratio]{3.9.png}
  \end{center}
  \caption{モータ周りの諸部品}
- \label{fig:3.8}
+ \label{fig:3.9}
 \end{figure}
 
 \newpage
@@ -432,10 +471,10 @@ $K_v$と$K_i$はそれぞれの検出部の結合係数である.\\\\
 
  \begin{figure}[!h]
  \begin{center}
-  \includegraphics[width=18cm,height=15cm,clip,keepaspectratio]{3.9.png}
+  \includegraphics[width=18cm,height=15cm,clip,keepaspectratio]{3.10.png}
  \end{center}
  \caption{フローチャート}
- \label{fig:3.9}
+ \label{fig:3.10}
 \end{figure}
 
 \newpage
@@ -445,10 +484,10 @@ $K_v$と$K_i$はそれぞれの検出部の結合係数である.\\\\
  「AC/DCコンバータ」,整合状況を表示する「LCD」,「LED」,また回路では方向性結合器がある.それらの配線を図3.8に示す.
  \begin{figure}[h!]
  \begin{center}
-  \includegraphics[width=18cm,height=18cm,clip,keepaspectratio]{3.10.pdf}
+  \includegraphics[width=18cm,height=18cm,clip,keepaspectratio]{3.11.pdf}
  \end{center}
  \caption{Arduino周りの配線}
- \label{fig:3.10}
+ \label{fig:3.11}
 \end{figure}
 %============================================================================================================
 \chapter{自動整合器の動作と評価}
