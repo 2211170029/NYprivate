@@ -19,6 +19,7 @@
 %\usepackage{url}             %いらないかも
 \usepackage[hang,small,bf]{caption}
 \usepackage[subrefformat=parens]{subcaption}
+\usepackage{amsmath}
 \captionsetup{compatibility=false, labelsep=space} %←先生のスタイルファイルと競合回避のために書き換え（:が表示されないように）
 
 % 前設定
@@ -339,7 +340,7 @@ $K_v$と$K_i$はそれぞれの検出部の結合係数である.\\\\
 
   ・X=－100～150[Ω] (Z≒50～330[Ω])\\
 
- \begin{figure}[h!]
+ \begin{figure}[!h]
  \begin{center}
   \includegraphics[width=10cm,height=10cm,clip,keepaspectratio]{3.3.png}
  \end{center}
@@ -375,7 +376,7 @@ $K_v$と$K_i$はそれぞれの検出部の結合係数である.\\\\
  \label{fig:two_images}
 \end{figure}
 
-\begin{figure}[h!]
+\begin{figure}[!h]
  \begin{center}
   \includegraphics[width=10cm,height=8cm,clip,keepaspectratio]{3.6.png}
  \end{center}
@@ -391,7 +392,7 @@ $K_v$と$K_i$はそれぞれの検出部の結合係数である.\\\\
  位置保持ができるものである.図3に示す選定した（ST-42BYH1004）の保持トルクは43.12[N・cm]であり
  今回使用した可変コンデンサのトルクの1.94[N・cm]を十分満たしている.また,2.4.2で示した駆動部に要求される性能も十分に
  満たしていることから,今回は（ST-41BYH1004）を採用した.\\
- \begin{figure}[h!]
+ \begin{figure}[!h]
  \begin{center}
   \includegraphics[width=10cm,height=6cm,clip,keepaspectratio]{3.7.png}
  \end{center}
@@ -482,7 +483,7 @@ $K_v$と$K_i$はそれぞれの検出部の結合係数である.\\\\
  \subsection{Arduino周りの回路素子と配線}
  「Arduino R4」に接続される素子はモータを動かすための「モータドライバ」,初期位置を検出する「センサー」,
  「AC/DCコンバータ」,整合状況を表示する「LCD」,「LED」,また回路では方向性結合器がある.それらの配線を図3.8に示す.
- \begin{figure}[h!]
+ \begin{figure}[!h]
  \begin{center}
   \includegraphics[width=18cm,height=18cm,clip,keepaspectratio]{3.11.pdf}
  \end{center}
@@ -498,10 +499,66 @@ $K_v$と$K_i$はそれぞれの検出部の結合係数である.\\\\
 ・直流可変電源 (0～160V):PAN160-3.5A\\
 ・オシロスコープ:DPO 2014B\\
 ・電力・SWR計:SX-100\\
-・負荷抵抗（50Ω）:WELZ CT-300\\
+・負荷抵抗（50Ω）:WELZ CT-300
+\subsection{RF電源の概要と動作}
+本研究では自動整合器の性能評価のため,23年度卒業研究で製作された13.56MHzのRF電源を使用した.
+この電源は「直流電源」,「RF電源」,「SWR計」,「50Ω負荷」を同軸ケーブルで接続した.入力電力を10[V]～120[V]
+の範囲で変化させ,可変コンデンサを回しながら最大出力値のところでデータをとった.結果を表に示す.最大出力の
+ところでデータをとると入力電力80[V]のところで効率が最大となった.
+
+これらの結果は23年度卒業研究の論文と類似した結果となっており,RF電源が正常に動作することを確認した.
+
+\begin{figure}[!h]
+ \begin{center}
+  \includegraphics[width=10cm,height=10cm,clip,keepaspectratio]{4.1.png}
+ \end{center}
+ \caption{13.56MHz RF電源}
+ \label{fig:4.1}
+\end{figure}
+
+\begin{figure}[!h]
+ \begin{center}
+  \includegraphics[width=20cm,height=15cm,clip,keepaspectratio]{4.2.png}
+ \end{center}
+ \caption{実験の様子}
+ \label{fig:4.2}
+\end{figure}
 \section{反射波検出部の評価}
 \subsection{製作した方向性結合器}
+本研究で製作した方向性結合器を図4.3に示す.\\
 
+\begin{figure}[!h]
+ \begin{center}
+  \includegraphics[width=10cm,height=10cm,clip,keepaspectratio]{4.3.png}
+ \end{center}
+  \caption{製作した方向性結合器}
+ \label{fig:4.3}
+\end{figure}
+ 
+\newpage
+
+\subsection{方向性結合器の動作と評価}
+製作した方向性結合器の動作を確認するため「ファンクションジェネレータ」,「方向性結合器」,「オシロスコープ」
+を同軸ケーブルで接続した.実験の様子を図4.4に示す.
+
+\begin{figure}[!h]
+ \begin{center}
+  \includegraphics[width=10cm,height=10cm,clip,keepaspectratio]{4.4.png}
+ \end{center}
+  \caption{実験の様子}
+ \label{fig:4.4}
+\end{figure}
+
+初めにファンクションジェネレータの設定を周波数13.56MHz,振幅5$V_{P-P}$としオシロスコープのCH1を
+方向性結合器のFWDポート,CH2をREFポートに接続した.実験の結果,FWDポートには周波数13.56MHz,振幅524mV
+の信号が確認できた.この結果をもとに結合度を計算すると,
+
+\begin{equation}
+20 \log_{10} \left( \frac{5000}{524} \right) \approx 19.6 \, \text{dB}
+ \label{eq:4.1}
+\end{equation}
+
+となり,
 \subsection{検波回路}
 \section{自動整合器の評価}
 %============================================================================================================
