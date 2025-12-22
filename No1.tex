@@ -16,9 +16,14 @@
 \usepackage{jgraduate20}     % jgraduate20.styを読み込む
 \usepackage[dvipdfmx]{graphicx}
 \usepackage{makeidx}          % 索引作成用
+\usepackage[dvipdfmx]{graphicx} % 画像表示用（もし未定義なら）
+%\usepackage{subcaption}         % 複数の画像を並べるために必要
 %\usepackage{url}             %いらないかも
 \usepackage[hang,small,bf]{caption}
-\usepackage[subrefformat=parens]{subcaption}
+\usepackage{subcaption}
+\captionsetup[subfigure]{labelformat=simple}
+\renewcommand{\thesubfigure}{(\alph{subfigure})}
+%\usepackage[subrefformat=parens]{subcaption}
 \usepackage{amsmath}
 \captionsetup{compatibility=false, labelsep=space} %←先生のスタイルファイルと競合回避のために書き換え（:が表示されないように）
 
@@ -242,11 +247,13 @@ $K_v$と$K_i$はそれぞれの検出部の結合係数である.\\\\
 \chapter{自動整合器の設計}
 
 \section{自動整合器の仕様}
- いかに示すのは設計した自動整合器の仕様である.\\\\
-・  動作周波数         13.56[MHz]\\
-・  最大入力電圧       122[V]\\ 
-・  目標インピーダンス　50[Ω]\\
-・  整合可能範囲       R=50～300[Ω], X=－100～150[Ω] (Z≒50～330[Ω])
+ いかに示すのは設計した自動整合器の仕様である.\\
+ \begin{itemize}
+    \item 動作周波数         13.56[MHz]
+    \item 最大入力電圧       122[V]
+    \item 目標インピーダンス　50[Ω]
+    \item 整合可能範囲       R=50～300[Ω], X=－100～150[Ω] (Z≒50～330[Ω])
+\end{itemize}
 %------------------------------------------------------------------------------------
 \section{反射波検出部}
  \subsection{設計した方向性結合器の概要}
@@ -335,10 +342,10 @@ $K_v$と$K_i$はそれぞれの検出部の結合係数である.\\\\
  低気圧プラズマ負荷を対象とした.低気圧プラズマ負荷は,点火時には高インピーダンス状態から急激に低インピ
  ーダンス状態へと変化するため,広範囲で整合を取る必要がある.以上の点を踏まえて,スミスチャートを
  もとに整合範囲を定め以下に示す.\\
-
-  ・R=50～300[Ω] 
-
-  ・X=－100～150[Ω] (Z≒50～330[Ω])\\
+\begin{itemize}
+    \item R=50～300[Ω]
+    \item X=－100～150[Ω] (Z≒50～330[Ω])
+\end{itemize}
 
  \begin{figure}[!h]
  \begin{center}
@@ -493,20 +500,73 @@ $K_v$と$K_i$はそれぞれの検出部の結合係数である.\\\\
 %============================================================================================================
 \chapter{自動整合器の動作と評価}
 \section{使用機器}
-以下に本研究で使用した機器を示す.\\\\
-・ファンクションジェネレータ：SG-4105\\
-・13.56MHz RF電源:23年度卒業研究製作\\
-・直流可変電源 (0～160V):PAN160-3.5A\\
-・オシロスコープ:DPO 2014B\\
-・電力・SWR計:SX-100\\
-・負荷抵抗（50Ω）:WELZ CT-300
+以下に本研究で使用した機器を示す.\\
+\begin{itemize}
+    \item ファンクションジェネレータ：SG-4105
+    \item 13.56MHz RF電源:23年度卒業研究製作
+    \item 直流可変電源 (0～160V):PAN160-3.5A
+    \item オシロスコープ:DPO 2014B
+    \item 電力・SWR計:SX-100
+    \item 負荷抵抗（50Ω）:WELZ CT-300
+\end{itemize}
+
+\begin{figure}[!p]
+    \centering
+\begin{subfigure}[b]{0.48\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{4.0.1.png}
+        \caption{ファンクションジェネレータ}
+        \label{fig:4.0.1}
+    \end{subfigure}
+    \hfill
+\begin{subfigure}[b]{0.48\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{4.0.2.png}
+        \caption{RF電源}
+        \label{fig:4.0.2}
+    \end{subfigure}
+    \vspace{1.5em}
+\begin{subfigure}[b]{0.48\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{4.0.3.png}
+        \caption{直流可変電源}
+        \label{fig:4.0.3}
+    \end{subfigure}
+    \hfill
+\begin{subfigure}[b]{0.48\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{4.0.4.png}
+        \caption{オシロスコープ}
+        \label{fig:4.0.4}
+    \end{subfigure}
+     \vspace{1.5em}
+\begin{subfigure}[b]{0.48\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{4.0.5.png}
+        \caption{SWR計}
+        \label{fig:4.0.5}
+    \end{subfigure}
+    \hfill
+\begin{subfigure}[b]{0.48\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{4.0.6.png}
+        \caption{負荷抵抗}
+        \label{fig:4.0.6}
+    \end{subfigure}
+    \vspace{1em}
+    \caption{本研究で使用した機器}
+    \label{fig:six_images_overview}
+\end{figure}
+
+\newpage
+
 \subsection{RF電源の概要と動作}
 本研究では自動整合器の性能評価のため,23年度卒業研究で製作された13.56MHzのRF電源を使用した.
 この電源は「直流電源」,「RF電源」,「SWR計」,「50Ω負荷」を同軸ケーブルで接続した.入力電力を10[V]～120[V]
 の範囲で変化させ,可変コンデンサを回しながら最大出力値のところでデータをとった.結果を表に示す.最大出力の
 ところでデータをとると入力電力80[V]のところで効率が最大となった.
 
-これらの結果は23年度卒業研究の論文と類似した結果となっており,RF電源が正常に動作することを確認した.
+これらの結果は23年度卒業研究の論文と類似した結果となっており,RF電源が正常に動作することを確認した.\\
 
 \begin{figure}[!h]
  \begin{center}
@@ -524,14 +584,15 @@ $K_v$と$K_i$はそれぞれの検出部の結合係数である.\\\\
  \label{fig:4.2}
 \end{figure}
 
+\newpage
 %==========================================================================================================
 \section{反射波検出部の評価}
 \subsection{製作した方向性結合器}
-本研究で製作した方向性結合器を図4.3に示す.\\
+本研究で製作した方向性結合器を図4.4に示す.\\
 
 \begin{figure}[!h]
  \begin{center}
-  \includegraphics[width=10cm,height=10cm,clip,keepaspectratio]{4.3.png}
+  \includegraphics[width=10cm,height=10cm,clip,keepaspectratio,angle=90]{4.3.png}
  \end{center}
   \caption{製作した方向性結合器}
  \label{fig:4.3}
@@ -542,30 +603,65 @@ $K_v$と$K_i$はそれぞれの検出部の結合係数である.\\\\
 %----------------------------------------------------------------------------------------------------------
 \subsection{方向性結合器の動作と評価}
 製作した方向性結合器の動作を確認するため「ファンクションジェネレータ」,「方向性結合器」,「オシロスコープ」
-を同軸ケーブルで接続した.実験の様子を図4.4に示す.
+を同軸ケーブルで接続した.実験の様子を図4.5に示す.
 
 \begin{figure}[!h]
  \begin{center}
-  \includegraphics[width=10cm,height=10cm,clip,keepaspectratio]{4.4.png}
+  \includegraphics[width=10cm,height=10cm,clip,keepaspectratio]{4.4.1.png}
  \end{center}
   \caption{実験の様子}
- \label{fig:4.4}
+ \label{fig:4.4.1}
 \end{figure}
 
-初めにファンクションジェネレータの設定を周波数13.56MHz,振幅5$V_{P-P}$としオシロスコープのCH1を
+図4.6に方向性結合器のオシロスコープでの波形を示す.ファンクションジェネレータの設定を周波数13.56MHz,振幅5$V_{P-P}$としオシロスコープのCH1を
 方向性結合器のFWDポート,CH2をREFポートに接続した.実験の結果,FWDポートには周波数13.56MHz,振幅524mV
 の信号が確認できた.この結果をもとに結合度を計算すると,
 
 \begin{equation}
 20 \log_{10} \left( \frac{5000}{524} \right) \approx 19.6 \, \text{dB}
  \label{eq:4.1}
-\end{equation}
+\end{equation}\\
 
-となり,
+となり,目標の20dBに近い値が得られた.しかし,理想的にはゼロである反射波が48mV確認された.これは,トランスを自作で
+製作したため精度が不十分だったことが原因と思われる.これ以上の精度を出すのは自作では難しく,反射波が入力電圧に対して
+微小であるため今回は許容とした.また,進行波の位相が反転してオシロスコープ上で確認されたが磁界結合と電界結合
+の両方を利用して方向性を得ているという方向性結合器の原理からのものである.
+
+\begin{figure}[!h]
+ \begin{center}
+  \includegraphics[width=15cm,height=15cm,clip,keepaspectratio]{4.4.png}
+ \end{center}
+  \caption{方向性結合器の波形}
+ \label{fig:4.4}
+\end{figure}
+
 
 %------------------------------------------------------------------------------------------------------------
 \subsection{検波回路}
+図4.7に製作した検波回路,図4.8に検波回路の動作波形を示す.ファンクションジェネレータを出力端子に接続し,設定値を周波数13.56MHz,
+振幅10$V_{P-P}$を検波回路に接続した.また,オシロスコープを検波回路の出力端子に接続し波形を確認した.実験の結果,出力電圧が108mV
+でシミュレーションの結果と近しい値が得られ,検波回路として動作することを確認した.
 
+しかし,シミュレーションのようなきれいな直線の波形は確認できなかった.平滑回路で高周波成分を完全に取り除くことができなかったのが
+原因だと考えられる.本研究で使用するArduinoの分解能と比較して十分に小さい値であり,デジタル値への変換において問題ない値であると判断した.
+
+\begin{figure}[!h]
+ \begin{center}
+  \includegraphics[width=15cm,height=10cm,clip,keepaspectratio]{4.5.png}
+ \end{center}
+  \caption{製作した検波回路}
+ \label{fig:4.5}
+\end{figure}
+
+\begin{figure}[!h]
+ \begin{center}
+  \includegraphics[width=15cm,height=15cm,clip,keepaspectratio]{4.6.png}
+ \end{center}
+  \caption{検波回路の波形}
+ \label{fig:4.6}
+\end{figure}
+
+\newpage
 %============================================================================================================
 \section{自動整合器の評価}
 %============================================================================================================
@@ -666,6 +762,7 @@ $K_v$と$K_i$はそれぞれの検出部の結合係数である.\\\\
 
 \section{安全上の注意}
 \begin{itemize}
+    \item 電源を接続する前にすべての配線の確認を行うこと。
     \item 本装置は高周波（13.56 MHz）電力を取り扱うため、通電中は各コネクタや内部回路に触れないこと。
     \item RF電源の出力が停止していることを確認してから、同軸ケーブルの着脱を行うこと。
 \end{itemize}
@@ -682,7 +779,7 @@ $K_v$と$K_i$はそれぞれの検出部の結合係数である.\\\\
 \section{操作手順}
 \subsection{自動整合モード}
 \begin{enumerate}
-    \item 電源を投入し、液晶ディスプレイに初期画面が表示されるのを待つ。
+    \item 電源を投入し、ディスプレイに初期画面が表示されるのを待つ。
     \item 整合器のスイッチを「AUTO」に切り替える。
     \item RF電源の出力を開始する。
     \item 山登り法アルゴリズムにより、反射電力が最小（目標値以下）になるまで自動的にステッピングモータが回転し、整合が行われる。
